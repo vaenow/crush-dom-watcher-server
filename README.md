@@ -6,6 +6,8 @@ Express.js server to handle and store these notifications.
 
 ![screenshots02.png](statics%2Fscreenshots02.png)
 
+![screenshots03.png](statics%2Fscreenshots03.png)
+
 ## Prepare the .env
 
 ```shell
