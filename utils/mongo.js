@@ -10,17 +10,7 @@ const MONGO_URI = process.env.MONGO_URI;
     logger.info('Connecting mongo ... ', MONGO_URI);
 
     // connect mongo
-    const mongoClient = await mongoose.connect(MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-
-    // check mongo status
-    if (await mongoClient.isConnected()) {
-        logger.info('Connected.')
-    } else {
-        logger.error('ERR Connecting mongo!')
-    }
-
+    await mongoose.connect(MONGO_URI);
+    logger.info('Connected.')
 })();
 

@@ -1,8 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 
-require('dotenv').load();
+require('dotenv').config();
 require('./utils/mongo');
+
+// middlewares
+const traceId = require('./middlewares/trace-id')
 
 // controllers
 const alert = require('./controllers/alert')
@@ -11,14 +14,15 @@ const alert = require('./controllers/alert')
 const { getLogger } = require('./utils/log4js')
 const logger = getLogger(__filename);
 
-// 创建Express应用
+// express app
 const app = express();
 
-// 中间件解析JSON请求体
+// middlewares
 app.use(express.json());
 app.use(cors());
+app.use(traceId);
 
-// POST /alert 端点来接收DOM变化通知
+// POST /alert endpoint
 app.post('/alert', alert);
 
 // 启动服务器

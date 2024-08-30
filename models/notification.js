@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// 创建通知模型
+// model schema
 const schema = new mongoose.Schema({
     browser: String,
     url: String,
