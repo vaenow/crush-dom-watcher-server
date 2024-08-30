@@ -1,21 +1,19 @@
-const Notification = require('../models/notification')
+const AlertModel = require('../models/alert')
 const {getLogger} = require("../utils/log4js");
 
 const logger = getLogger(__filename);
 
 const alert = async (req, res) => {
-    const notification = { ...req.body, traceId: req.traceId };
+    const alertList = req.body
 
-    console.log(notification)
     // 记录详细的通知数据
-    logger.info(`Received notification: ${JSON.stringify(notification)}`);
+    logger.info(`Received alert: ${JSON.stringify(alertList)}`);
 
     try {
-        const newNotification = new Notification(notification);
-        await newNotification.save();
-        res.status(200).send('Notification received and stored.');
+        await AlertModel.insertMany(alertList)
+        res.status(200).send('AlertList received and stored.');
     } catch (err) {
-        logger.error(`Error saving notification: ${err}`);
+        logger.error(`Error saving alert: ${err}`);
         res.status(500).send('Server Error');
     }
 }

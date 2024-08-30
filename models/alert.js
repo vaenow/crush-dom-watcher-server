@@ -11,4 +11,4 @@ const schema = new mongoose.Schema({
     traceId: String,
 });
 
-module.exports = mongoose.model('Notification', schema);
+module.exports = mongoose.model('alert', schema);
